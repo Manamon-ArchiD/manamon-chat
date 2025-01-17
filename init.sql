@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS chat (
+    id SERIAL PRIMARY KEY,
+    sender_id TEXT NOT NULL,
+    receiver_id TEXT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

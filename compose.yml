@@ -1,0 +1,25 @@
+services:
+  manamon-chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - manamon-db
+    environment:
+      POSTGRES_HOST: 'manamon-db'
+  manamon-db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: manamon
+      POSTGRES_PASSWORD: manamon
+      POSTGRES_DB: manamon
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - manamon-db-data:/var/lib/postgresql
+
+volumes:
+  manamon-db-data:
