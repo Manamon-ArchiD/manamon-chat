@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: API ManaMon Chat
+  version: 1.0.0
+  description: API pour envoyer et récupérer des messages entre utilisateurs
+
+paths:
+  /v1/chat/message:
+    post:
+      summary: Envoyer un message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                senderId:
+                  type: string
+                  description: ID de l'expéditeur
+                receiverId:
+                  type: string
+                  description: ID du destinataire
+                message:
+                  type: string
+                  description: Le contenu du message
+              required:
+                - senderId
+                - receiverId
+                - message
+      responses:
+        '200':
+          description: Message envoyé avec succès
+        '400':
+          description: Entrée invalide
+
+  /v1/chat/message/{user1}/{user2}:
+    get:
+      summary: Récupérer les messages entre deux utilisateurs
+      parameters:
+        - in: path
+          name: user1
+          required: true
+          schema:
+            type: string
+          description: ID du premier utilisateur
+        - in: path
+          name: user2
+          required: true
+          schema:
+            type: string
+          description: ID du deuxième utilisateur
+      responses:
+        '200':
+          description: Liste des messages entre les deux utilisateurs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    senderId:
+                      type: string
+                    receiverId:
+                      type: string
+                    message:
+                      type: string
+                    timestamp:
+                      type: string
+                      format: date-time
+        '400':
+          description: Entrée invalide
+        '404':
+          description: Aucun message trouvé
