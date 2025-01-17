@@ -1,88 +1,88 @@
 # manamon-chat
 
-## API Overview
-The API ManaMon Chat allows users to send and retrieve messages between each other.
+## Présentation de l'API
+L'API ManaMon Chat permet aux utilisateurs d'envoyer et de récupérer des messages entre eux.
 
-## Endpoints
+## Points de terminaison
 
 ### POST /v1/chat/message
-Send a message from one user to another.
+Envoyer un message d'un utilisateur à un autre.
 
-#### Request Body
-- `senderId` (string): ID of the sender (required)
-- `receiverId` (string): ID of the receiver (required)
-- `message` (string): The content of the message (required)
+#### Corps de la requête
+- `senderId` (string): ID de l'expéditeur (requis)
+- `receiverId` (string): ID du destinataire (requis)
+- `message` (string): Le contenu du message (requis)
 
-#### Responses
-- `200`: Message sent successfully
-- `400`: Invalid input
+#### Réponses
+- `200`: Message envoyé avec succès
+- `400`: Entrée invalide
 
 ### GET /v1/chat/message/{user1}/{user2}
-Retrieve messages between two users.
+Récupérer les messages entre deux utilisateurs.
 
-#### Path Parameters
-- `user1` (string): ID of the first user (required)
-- `user2` (string): ID of the second user (required)
+#### Paramètres de chemin
+- `user1` (string): ID du premier utilisateur (requis)
+- `user2` (string): ID du deuxième utilisateur (requis)
 
-#### Responses
-- `200`: List of messages between the two users
-- `400`: Invalid input
-- `404`: No messages found
+#### Réponses
+- `200`: Liste des messages entre les deux utilisateurs
+- `400`: Entrée invalide
+- `404`: Aucun message trouvé
 
-## Request and Response Formats
+## Formats de requête et de réponse
 
 ### POST /v1/chat/message
 
-#### Request
+#### Requête
 ```json
 {
   "senderId": "user1",
   "receiverId": "user2",
-  "message": "Hello, how are you?"
+  "message": "Bonjour, comment ça va?"
 }
 ```
 
-#### Response
+#### Réponse
 ```json
 {
-  "status": "Message sent successfully"
+  "status": "Message envoyé avec succès"
 }
 ```
 
 ### GET /v1/chat/message/{user1}/{user2}
 
-#### Response
+#### Réponse
 ```json
 [
   {
-    "id": "12"
+    "id": "12",
     "senderId": "user1",
     "receiverId": "user2",
-    "message": "Hello, how are you?",
+    "message": "Bonjour, comment ça va?",
     "created_at": "2023-01-01T12:00:00Z"
   },
   {
-    "id": "13"
+    "id": "13",
     "senderId": "user2",
     "receiverId": "user1",
-    "message": "I'm good, thanks!",
+    "message": "Je vais bien, merci!",
     "created_at": "2023-01-01T12:01:00Z"
   }
 ]
 ```
 
-## Usage Examples
+## Exemples d'utilisation
 
-### Sending a Message
+### Envoyer un message
 ```bash
 curl -X POST "http://api.example.com/v1/chat/message" -H "Content-Type: application/json" -d '{
   "senderId": "user1",
   "receiverId": "user2",
-  "message": "Hello, how are you?"
+  "message": "Bonjour, comment ça va?"
 }'
 ```
 
-### Retrieving Messages
+### Récupérer les messages
 ```bash
 curl -X GET "http://api.example.com/v1/chat/message/user1/user2"
 ```
