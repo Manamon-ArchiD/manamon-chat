@@ -1,5 +1,15 @@
 # manamon-chat
 
+## Lancer l'application avec Docker Compose
+1. Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine.
+2. Clonez le dépôt de l'application.
+3. Naviguez dans le répertoire du projet.
+4. Exécutez la commande suivante pour démarrer les services définis dans `compose.yml` :
+```bash
+docker-compose up
+```
+5. L'application sera accessible sur le port 3000 et la base de données PostgreSQL sur le port 5432.
+
 ## Présentation de l'API
 L'API ManaMon Chat permet aux utilisateurs d'envoyer et de récupérer des messages entre eux.
 
