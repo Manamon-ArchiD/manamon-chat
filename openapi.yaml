@@ -60,13 +60,15 @@ paths:
                 items:
                   type: object
                   properties:
+                    id:
+                      type: integer
                     senderId:
                       type: string
                     receiverId:
                       type: string
                     message:
                       type: string
-                    timestamp:
+                    created_at:
                       type: string
                       format: date-time
         '400':
