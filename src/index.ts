@@ -21,12 +21,26 @@ app.use(express.json())
  */
 app.use(cors())
 
+// log every access
+app.use((req, res, next) => {
+  console.log('🔒 ' + req.method + ' ' + req.originalUrl)
+  next()
+})
+
+
 /**
  * Toutes les routes CRUD pour les animaux seronts préfixées par `/pets`
  */
 app.use('/v1/chat', ChatController)
 
 // app.get('/', (req, res) => res.send('🏠'))
+
+// define BadRequestException for missing route
+app.use((req, res) => {
+  console.log('🚫 ' + req.method + ' ' + req.originalUrl)
+  res.status(404).send('🚫 ' + req.method + ' ' + req.originalUrl + ' not found')
+})
+
 
 /**
  * On demande à Express d'ecouter les requêtes sur le port défini dans la config
