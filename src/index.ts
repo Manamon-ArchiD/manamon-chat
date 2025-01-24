@@ -33,9 +33,6 @@ app.use((req, res, next) => {
  */
 app.use('/v1/chat', ChatController)
 
-// app.get('/', (req, res) => res.send('🏠'))
-
-// define BadRequestException for missing route
 app.use((req, res) => {
   console.log('🚫 ' + req.method + ' ' + req.originalUrl)
   res.status(404).send('🚫 ' + req.method + ' ' + req.originalUrl + ' not found')
