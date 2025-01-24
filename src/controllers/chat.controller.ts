@@ -7,6 +7,7 @@ import pool from '../repository/db.repository'
 const ChatController = Router()
 
 ChatController.get('/', async (req, res) => {
+ChatController.get('/', async (req, res, next) => {
 
   try {
     const result = await pool.query("SELECT * FROM chat");
