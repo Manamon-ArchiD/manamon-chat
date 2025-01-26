@@ -43,3 +43,5 @@ app.use((req, res) => {
  * On demande à Express d'ecouter les requêtes sur le port défini dans la config
  */
 app.listen(config.API_PORT, () => console.log('Silence, ça tourne.'))
+
+export default app
